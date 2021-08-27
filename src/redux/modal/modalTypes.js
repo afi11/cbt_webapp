@@ -1,0 +1,3 @@
+export const SET_MODAL_TITLE = "SET_MODAL_TITLE";
+export const SET_HIDE_MODAL = "SET_HIDE_MODAL";
+export const SET_EDIT_MODAL = "SET_EDIT_MODAL";

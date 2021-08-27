@@ -1,0 +1,5 @@
+export const COUNT_QUESTION = "COUNT_QUESTION";
+export const GET_ANSWERED = "GET_ANSWERED";
+export const FINISH_EXAM = "FINISH_EXAM";
+export const CHECK_EXAM_FINISH = "CHECK_EXAM_FINISH";
+export const SCORES_EXAM = "SCORES_EXAM";
