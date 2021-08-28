@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { changeFormUser, registerUser } from "../../redux";
 
 export default function Register() {
@@ -18,125 +18,113 @@ export default function Register() {
       ) : (
         <Redirect to="/register" />
       )}
-      <div className="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-        <div className="auth-box bg-dark border-top border-secondary">
-          <div>
-            <div className="text-center p-t-20 p-b-20">
-              <span className="db">
-                <img src="../../assets/images/logo.png" alt="logo" />
-              </span>
-            </div>
-            {auth.messageError != null ? (
-              <div className="alert alert-danger mt-3" role="alert">
-                <h4 className="alert-heading">Please Notice Error Bellow!</h4>
-                {auth.messageError.name != null ? (
-                  <li>{auth.messageError.nam}</li>
-                ) : (
-                  ""
-                )}
-                {auth.messageError.email != null ? (
-                  <li>{auth.messageError.email}</li>
-                ) : (
-                  ""
-                )}
-                {auth.messageError.password != null ? (
-                  <li>{auth.messageError.password}</li>
-                ) : (
-                  ""
-                )}
-              </div>
-            ) : (
-              <></>
-            )}
-            <div className="row p-b-30 mt-4">
-              <div className="col-12">
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text bg-success text-white"
-                      id="basic-addon1"
-                    >
-                      <i className="ti-user"></i>
-                    </span>
+      <div className="h-screen font-sans login bg-cover">
+        <div className="container mx-auto h-full flex flex-1 justify-center items-center">
+          <div className="w-full max-w-lg">
+            <div className="leading-loose">
+              <div className="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+                {auth.messageError != null ? (
+                  <div className="bg-red-600 px-2 py-3 rounded text-white mt-3">
+                    <h4 className="alert-heading">
+                      Please Notice Error Bellow!
+                    </h4>
+                    {auth.messageError.name != null ? (
+                      <li>{auth.messageError.name}</li>
+                    ) : (
+                      ""
+                    )}
+                    {auth.messageError.email != null ? (
+                      <li>{auth.messageError.email}</li>
+                    ) : (
+                      ""
+                    )}
+                    {auth.messageError.password != null ? (
+                      <li>{auth.messageError.password}</li>
+                    ) : (
+                      ""
+                    )}
                   </div>
+                ) : (
+                  <></>
+                )}
+                <p className="text-gray-800 font-medium text-center text-lg font-bold">
+                  Register
+                </p>
+                <div className="mt-2">
+                  <label className="block text-sm text-gray-00" for="name">
+                    Name
+                  </label>
                   <input
-                    type="text"
-                    name="name"
-                    className="form-control form-control-lg"
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    id="name"
                     value={auth.user.name}
                     onChange={(e) => dispatch(changeFormUser(e))}
                     placeholder="Name"
+                    name="name"
+                    type="text"
                   />
                 </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text bg-danger text-white"
-                      id="basic-addon1"
-                    >
-                      <i className="ti-email"></i>
-                    </span>
-                  </div>
+                <div className="mt-2">
+                  <label className="block text-sm text-gray-00" for="email">
+                    Email
+                  </label>
                   <input
-                    type="email"
-                    name="email"
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    id="email"
                     value={auth.user.email}
                     onChange={(e) => dispatch(changeFormUser(e))}
-                    className="form-control form-control-lg"
+                    name="email"
+                    type="email"
+                    required=""
                     placeholder="Email Address"
                   />
                 </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text bg-warning text-white"
-                      id="basic-addon2"
-                    >
-                      <i className="ti-pencil"></i>
-                    </span>
-                  </div>
+                <div className="mt-2">
+                  <label className="block text-sm text-gray-600" for="password">
+                    Password
+                  </label>
                   <input
-                    type="password"
+                    className="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded"
+                    id="password"
                     name="password"
+                    type="password"
                     value={auth.user.password}
                     onChange={(e) => dispatch(changeFormUser(e))}
-                    className="form-control form-control-lg"
-                    placeholder="Password"
+                    required=""
+                    placeholder="*******"
+                    aria-label="password"
                   />
                 </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text bg-info text-white"
-                      id="basic-addon2"
-                    >
-                      <i className="ti-pencil"></i>
-                    </span>
-                  </div>
+                <div className="mt-2">
+                  <label className="block text-sm text-gray-600" for="password">
+                    Password Confirmation
+                  </label>
                   <input
+                    className="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded"
                     type="password"
                     name="password_confirmation"
                     value={auth.user.password_confirmation}
                     onChange={(e) => dispatch(changeFormUser(e))}
-                    className="form-control form-control-lg"
-                    placeholder=" Confirm Password"
+                    required=""
+                    placeholder="*******"
+                    aria-label="password"
                   />
                 </div>
-              </div>
-            </div>
-            <div className="row border-top border-secondary">
-              <div className="col-12">
-                <div className="form-group mt-3">
-                  <div className="p-t-20">
-                    <button
-                      className="btn btn-block btn-lg btn-info"
-                      type="button"
-                      onClick={submitRegister}
-                    >
-                      Sign Up
-                    </button>
-                  </div>
+                <div className="mt-4 items-center justify-between">
+                  <button
+                    className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                    type="button"
+                    onClick={submitRegister}
+                  >
+                    Sign Up
+                  </button>
                 </div>
+                <Link
+                  className="inline-block right-0 align-baseline font-bold text-sm text-500 hover:text-blue-800"
+                  to="/login"
+                >
+                  Already Register ?
+                </Link>
               </div>
             </div>
           </div>

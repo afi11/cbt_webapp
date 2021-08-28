@@ -271,12 +271,12 @@ export default function Exam() {
               <button
                 className={
                   row.no_question == no_question
-                    ? "bg-blue-500 rounded text-white rounded hover:bg-blue-700 px-4 py-2 mr-2"
+                    ? "mt-2 bg-blue-500 rounded text-white rounded hover:bg-blue-700 px-4 py-2 mr-2"
                     : row.is_doubht == "1"
-                    ? "bg-orange-500 rounded text-white rounded hover:bg-orange-700 px-4 py-2 mr-2"
+                    ? "mt-2 bg-orange-500 rounded text-white rounded hover:bg-orange-700 px-4 py-2 mr-2"
                     : row.answered == null
-                    ? "border-2 border-gray-700 rounded text-gray-700 hover:text-white rounded hover:bg-gray-700 px-4 py-2 mr-2"
-                    : "bg-green-500 rounded text-white rounded hover:bg-green-700 px-4 py-2 mr-2"
+                    ? "mt-2 border-2 border-gray-700 rounded text-gray-700 hover:text-white rounded hover:bg-gray-700 px-4 py-2 mr-2"
+                    : "mt-2 bg-green-500 rounded text-white rounded hover:bg-green-700 px-4 py-2 mr-2"
                 }
                 onClick={() => gotoNext(row.no_question)}
               >

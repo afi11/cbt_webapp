@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { changeFormUser, loginUser } from "../../redux";
 
 export default function Login() {
@@ -12,67 +13,60 @@ export default function Login() {
 
   return (
     <>
-      <div className="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-        <div className="auth-box bg-dark border-top border-secondary">
-          <div>
-            <div className="text-center p-t-20 p-b-20">
-              <span className="db">
-                <img src="../../assets/images/logo.png" alt="logo" />
-              </span>
-            </div>
-            <div className="row p-b-30 mt-4">
-              <div className="col-12">
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text bg-danger text-white"
-                      id="basic-addon1"
-                    >
-                      <i className="ti-email"></i>
-                    </span>
-                  </div>
+      <div className="h-screen font-sans login bg-cover">
+        <div className="container mx-auto h-full flex flex-1 justify-center items-center">
+          <div className="w-full max-w-lg">
+            <div className="leading-loose">
+              <div className="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+                <p className="text-gray-800 font-medium text-center text-lg font-bold">
+                  Login
+                </p>
+                <div className="">
+                  <label className="block text-sm text-gray-00" for="email">
+                    Email
+                  </label>
                   <input
-                    type="email"
-                    name="email"
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    id="email"
                     value={auth.user.email}
                     onChange={(e) => dispatch(changeFormUser(e))}
-                    className="form-control form-control-lg"
-                    placeholder="Email Address"
+                    name="email"
+                    type="email"
+                    required=""
+                    placeholder="Email User"
                   />
                 </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text bg-warning text-white"
-                      id="basic-addon2"
-                    >
-                      <i className="ti-pencil"></i>
-                    </span>
-                  </div>
+                <div className="mt-2">
+                  <label className="block text-sm text-gray-600" for="password">
+                    Password
+                  </label>
                   <input
-                    type="password"
+                    className="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded"
+                    id="password"
                     name="password"
+                    type="password"
                     value={auth.user.password}
                     onChange={(e) => dispatch(changeFormUser(e))}
-                    className="form-control form-control-lg"
-                    placeholder="Password"
+                    required=""
+                    placeholder="*******"
+                    aria-label="password"
                   />
                 </div>
-              </div>
-            </div>
-            <div className="row border-top border-secondary">
-              <div className="col-12">
-                <div className="form-group mt-3">
-                  <div className="p-t-20">
-                    <button
-                      className="btn btn-block btn-lg btn-info"
-                      type="button"
-                      onClick={submitData}
-                    >
-                      Log In
-                    </button>
-                  </div>
+                <div className="mt-4 items-center justify-between">
+                  <button
+                    className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                    type="button"
+                    onClick={submitData}
+                  >
+                    Login
+                  </button>
                 </div>
+                <Link
+                  className="inline-block right-0 align-baseline font-bold text-sm text-500 hover:text-blue-800"
+                  to="/register"
+                >
+                  Not registered ?
+                </Link>
               </div>
             </div>
           </div>

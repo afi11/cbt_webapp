@@ -43,7 +43,7 @@ function App() {
               !Auth.hasLogin() ? (
                 <Login />
               ) : Auth.isStudentPage() ? (
-                <Redirect to="/" />
+                <Redirect to="/student" />
               ) : (
                 <Redirect to="/admin" />
               )

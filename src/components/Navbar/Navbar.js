@@ -1,8 +1,26 @@
-import React from "react";
-import { profileToggle, sidebarToggle } from "../ComponentFunctions/ComponentFunctions";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Auth from "../../config/Auth";
+import { getUserData } from "../../redux";
+import { urlPhoto } from "../../services/url";
+import {
+  profileToggle,
+  sidebarToggle,
+} from "../ComponentFunctions/ComponentFunctions";
 
 export default function Navbar() {
-  
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getUserData(Auth.getTokenAndUserId().userid));
+  }, []);
+
+  const logout = () => {
+    Auth.destroyToken();
+    window.location.reload();
+  };
+
   return (
     <>
       <header className="bg-nav">
@@ -12,14 +30,15 @@ export default function Navbar() {
               className="fas fa-bars pr-2 text-white"
               onClick={sidebarToggle}
             ></i>
-            <h1 className="text-white p-2">Logo</h1>
+            <h1 className="text-white p-2">
+              <span className="fa fa-desktop"></span> Ujon
+            </h1>
           </div>
           <div className="p-1 flex flex-row items-center">
-            
             <img
-              onclick="profileToggle()"
+              onClick={profileToggle}
               className="inline-block h-8 w-8 rounded-full"
-              src={"../../assets/img/default.jpg"}
+              src={urlPhoto + auth.user.photo}
               alt=""
             />
             <span
@@ -27,39 +46,21 @@ export default function Navbar() {
               onClick={profileToggle}
               className="text-white p-2 no-underline hidden md:block lg:block"
             >
-              Adam Wathan
+              {auth.user.name}
             </span>
             <div
               id="ProfileDropDown"
-              className="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r"
+              className="rounded hidden shadow-md bg-white absolute pin-t mt-24 mr-1 pin-r"
             >
               <ul className="list-reset">
                 <li>
-                  <a
-                    href="#"
+                  <button
+                    type="button"
+                    onClick={logout}
                     className="no-underline px-4 py-2 block text-black hover:bg-grey-light"
                   >
-                    My account
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="no-underline px-4 py-2 block text-black hover:bg-grey-light"
-                  >
-                    Notifications
-                  </a>
-                </li>
-                <li>
-                  <hr className="border-t mx-2 border-grey-ligght" />
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="no-underline px-4 py-2 block text-black hover:bg-grey-light"
-                  >
-                    Logout
-                  </a>
+                    Logout <span className="fa fa-sign-out-alt"></span>
+                  </button>
                 </li>
               </ul>
             </div>

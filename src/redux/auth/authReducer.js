@@ -1,6 +1,7 @@
 import {
   CLEAR_FORM_AUTH,
   FORM_USER,
+  GET_USER_DATA,
   IS_SUCCESS_AUTH,
   MESSAGE_AUTH,
   MESSAGE_ERROR_AUTH,
@@ -47,6 +48,14 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         messageError: action.value,
+      };
+    case GET_USER_DATA:
+      return {
+        ...state,
+        user: {
+          name: action.value.name,
+          photo: action.value.photo,
+        },
       };
     default:
       return state;

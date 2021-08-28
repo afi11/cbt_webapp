@@ -1,9 +1,11 @@
 import Auth from "../../config/Auth";
 import { c_admin, c_student } from "../../config/code";
+import { GET_DET_DATA } from "../../services/get";
 import { POST_DATA } from "../../services/post";
 import {
   CLEAR_FORM_AUTH,
   FORM_USER,
+  GET_USER_DATA,
   IS_SUCCESS_AUTH,
   MESSAGE_AUTH,
   MESSAGE_ERROR_AUTH,
@@ -98,5 +100,20 @@ export const loginUser = (user) => {
         dispatch(setMessageAuth(err));
         dispatch(setSuccessAuth(false));
       });
+  };
+};
+
+const putUserData = (value) => {
+  return {
+    type: GET_USER_DATA,
+    value: value,
+  };
+};
+
+export const getUserData = (id) => {
+  return (dispatch) => {
+    GET_DET_DATA("get_user", id).then((res) => {
+      dispatch(putUserData(res.data));
+    });
   };
 };
