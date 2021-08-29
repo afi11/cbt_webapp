@@ -2,9 +2,8 @@
 > Web-based application used to conduct online exams.
 
 ## How to run project
-1. composer install
-2. php artisan migrate
-3. php artisan serve
+1. yarn install / npm install
+2. yarn start / npm start
 
 ## Screenshots
 <p align="left">
